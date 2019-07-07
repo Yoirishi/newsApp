@@ -12,7 +12,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RecivedData } from './news/recived.news';
 
 const appRoutes: Routes =[
-    { path: '', component: HomeComponent},
+    { path: '', component: NewsComponent},
     { path: 'news', component: NewsComponent},
     { path: 'about', component: AboutComponent},
     { path: '**', component: NotFoundComponent }
