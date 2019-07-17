@@ -7,9 +7,11 @@ import {Routes, RouterModule} from '@angular/router';
 import { AboutComponent }   from './about.component';
 import { NewsComponent }   from './news.component';
 import { NotFoundComponent }   from './not-found.component';
-import { HomeComponent }   from './home.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RecivedData } from './news/recived.news';
+
+
+
 
 const appRoutes: Routes =[
     { path: '', component: NewsComponent},
@@ -20,7 +22,7 @@ const appRoutes: Routes =[
 
 @NgModule({
     imports:[BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes), InfiniteScrollModule],
-    declarations: [ AppComponent, NewsComponent, AboutComponent, NotFoundComponent, HomeComponent, RecivedData],
+    declarations: [ AppComponent, NewsComponent, AboutComponent, NotFoundComponent, RecivedData],
     bootstrap: [AppComponent]
 })
 export class AppModule{}

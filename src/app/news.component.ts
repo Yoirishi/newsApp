@@ -3,20 +3,19 @@ import { NewsHttpService } from './news/news.http.service';
 import { News } from './news/news.form';
 import { RecivedData } from './news/recived.news';
 
-const nisPackage = require('../../package.json');
 
 @Component({
     selector: 'news-app',
     templateUrl: `./news.component.html`,
     providers: [NewsHttpService, News]
 })
+
 export class NewsComponent implements OnInit, AfterViewChecked, DoCheck{
     recivedNews: RecivedData[] = [];
     displayedNews: RecivedData[] = [];
-    throttle = 300;
+    throttle = 1;
     scrollDistance = 1;
     counter: boolean = false;
-
 
     timeConverter (nginx_timestamp: number) {
       let a = new Date(nginx_timestamp*1000);
@@ -31,57 +30,57 @@ export class NewsComponent implements OnInit, AfterViewChecked, DoCheck{
       return time;
     }
 
-
-
     constructor(private newsHttpService: NewsHttpService, public newscontaner: News){
       this.newscontaner.count = 20;
-      this.newscontaner.type = 1;
+      this.newscontaner.type = 2;
       this.newscontaner.offset = 0;
     }
 
+    ngOnInit() {
+      this.loadNews(this.newscontaner);
+      console.log('OnInit');
+    }
 
-  ngOnInit() {
-    this.loadNews(this.newscontaner);
-    console.log('OnInit');
-  }
+    ngDoCheck() {
+      //this.pushNews();
+      console.log('DoCheck');
+    }
 
-  ngDoCheck() {
-    this.pushNews();
-    console.log('DoCheck');
-  }
-
-  ngAfterViewChecked() {
-    this.pushNews();
-    console.log('AfterViewChecked');
-  }
+    ngAfterViewChecked() {
+      //this.pushNews();
+      console.log('AfterViewChecked');
+    }
 
     loadNews(newscontaner: News) {
       console.log('try to update');
       this.newsHttpService.postNews(newscontaner)
-        .subscribe(
-          (data: RecivedData) => {
-            this.recivedNews=data["data"];
-            console.log('load');
-            this.counter = true;
-          },
-          error => console.log(error));
-    console.log('switch is ' + this.counter);
-      this.pushNews();
+      .subscribe( (data: RecivedData) => {
+        this.recivedNews = data["data"];
+        console.log(this.recivedNews);
+        /*
+        console.log('load');
+        this.counter = true;*/
+        this.recivedNews.forEach((value)=>{
+          this.displayedNews.push(value);
+        })
+      }, error => console.log(error));
+      //console.log('switch is ' + this.counter);
+      //this.pushNews();
     }
 
     pushNews() {
-    console.log('switch is ' + this.counter);
-    if (this.counter == true) {
-            for (let i = 0; i<20; i++){
-              this.displayedNews.push(this.recivedNews[i]);
-            }
-              this.newscontaner.offset += 20;
-              this.counter = false;
-              console.log('succesfull update');
-          }
-          else {
-            console.log('fail to update');
-          }
-          console.log('switch is ' + this.counter);
+      console.log('switch is ' + this.counter);
+      if (this.counter == true) {
+        for (let i = 0; i<20; i++){
+          this.displayedNews.push(this.recivedNews[i]);
+        }
+      this.newscontaner.offset += 20;
+      this.counter = false;
+      console.log('succesfull update');
+    }
+      else {
+        console.log('fail to update');
+      }
+      console.log('switch is ' + this.counter);
     }
 }

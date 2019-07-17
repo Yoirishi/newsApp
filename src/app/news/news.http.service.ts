@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {News} from './news.form';
+import {RecivedData} from './recived.news';
 
 
 @Injectable()

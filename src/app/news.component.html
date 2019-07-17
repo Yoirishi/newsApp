@@ -3,11 +3,11 @@
       [infiniteScrollDistance]="scrollDistance"
       [infiniteScrollThrottle]="throttle"
       (scrolled)="loadNews(newscontaner)">
-      <ul>
-        <li *ngFor="let i of displayedNews">
+
+        <div class="news" *ngFor="let i of displayedNews">
           <h4>Запостил: {{i?.owner_name}}</h4>
           <p>Содержание: {{i?.text}}</p>
           <p>Дата публикации: {{timeConverter(i?.date)}}</p>
-        </li>
-      </ul>
+        </div>
+
 </div>

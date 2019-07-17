@@ -5,16 +5,13 @@ import { Component } from '@angular/core';
     template: ``
 })
 
-export class RecivedData
-   {
+export class RecivedData{
       text: string;
       date: number;
       owner_name: string;
-
-      constructor(text: string, owner_name: string, date: number) {
-
-        this.text = text;
-        this.date = date;
-        this.owner_name = owner_name;
-    }
-  }
+      /*constructor (t: string, d: number, o: string){
+        this.text = t;
+        this.date = d;
+        this.owner_name = o;
+      }*/
+}
