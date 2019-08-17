@@ -9,7 +9,7 @@ import { NewsComponent }   from './news.component';
 import { NotFoundComponent }   from './not-found.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RecivedData } from './news/recived.news';
-
+import { NgxMasonryModule } from 'ngx-masonry';
 
 
 
@@ -21,7 +21,7 @@ const appRoutes: Routes =[
 ];
 
 @NgModule({
-    imports:[BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes), InfiniteScrollModule],
+    imports:[BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes), InfiniteScrollModule, NgxMasonryModule],
     declarations: [ AppComponent, NewsComponent, AboutComponent, NotFoundComponent, RecivedData],
     bootstrap: [AppComponent]
 })

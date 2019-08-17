@@ -7,6 +7,11 @@ import { RecivedData } from './news/recived.news';
 @Component({
     selector: 'news-app',
     templateUrl: `./news.component.html`,
+    styles: [
+    `
+       .masonry-item { width: 200px; }
+     `
+   ],
     providers: [NewsHttpService, News]
 })
 

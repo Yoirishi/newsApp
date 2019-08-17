@@ -3,11 +3,11 @@
       [infiniteScrollDistance]="scrollDistance"
       [infiniteScrollThrottle]="throttle"
       (scrolled)="loadNews(newscontaner)">
-
-        <div class="news" *ngFor="let i of displayedNews">
+      <ngx-masonry>
+        <div style="border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-left-radius: 20px; border-top-right-radius: 20px; background: #000080; color: #ffe; margin-bottom: 25px" ngxMasonryItem *ngFor="let i of displayedNews">
           <h4>Запостил: {{i?.owner_name}}</h4>
           <p>Содержание: {{i?.text}}</p>
           <p>Дата публикации: {{timeConverter(i?.date)}}</p>
         </div>
-
+      </ngx-masonry>
 </div>
